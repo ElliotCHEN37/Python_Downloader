@@ -1,0 +1,91 @@
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f2f2f2;
+    line-height: 1.6;
+  }
+  
+  .nav {
+    background-color: #666666;
+    color: #fff;
+  }
+  
+  .ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+  
+  .li {
+    float: right;
+  }
+  
+  .header {
+    float: left;
+  }
+  
+  .a {
+    display: block;
+    padding: 20px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  section {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 0 10px;
+  }
+  
+  
+  .text-box {
+    border: 5px solid #ccc;  /* 边框样式 */
+    padding: 5px;          /* 内边距 */
+    width: 700px;           /* 宽度 */
+    height: 150px;          /* 高度 */
+    background-color: #f1f1f1;  /* 背景颜色 */
+    color: #333;            /* 文本颜色 */
+    font-size: 16px;        /* 字体大小 */
+	margin-left: 100px;
+    margin-right: auto;
+	position: relative;
+    top: -300px; /* 向上移动 */
+  }
+  
+    .nav-box {
+    border: 5px solid #ccc;  /* 边框样式 */
+    padding: 5px;          /* 内边距 */
+    width: 200px;           /* 宽度 */
+    height: 300px;          /* 高度 */
+    background-color: #f1f1f1;  /* 背景颜色 */
+    color: #333;            /* 文本颜色 */
+    font-size: 16px;        /* 字体大小 */
+	margin-left: auto;
+    margin-right: 50px;
+  }
+
+	.right-aligned {
+	  margin-left: 900px;
+      position: relative;
+      top: -130px; /* 向上移动 */
+	}
+
+	.text-box-img {
+	  margin-left: 750px;
+	  position: relative;
+      top: -450px; /* 向上移动 */
+	}
+	
+	.ms365 {
+	  margin-left: 620px;
+	  position: relative;
+      top: -450px; /* 向上移动 */
+	}
+
+  footer {
+    background-color: #666666;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    clear: both;
+  }
