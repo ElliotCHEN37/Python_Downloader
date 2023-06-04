@@ -4,19 +4,19 @@
     line-height: 1.6;
   }
   
-  .nav {
+  .header-nav {
     background-color: #666666;
     color: #fff;
   }
   
-  .ul {
+  .header-ul {
     margin: 0;
     padding: 0;
     list-style: none;
     overflow: hidden;
   }
   
-  .li {
+  .right {
     float: right;
   }
   
@@ -24,10 +24,22 @@
     float: left;
   }
   
-  .a {
+  .header-link {
     display: block;
     padding: 20px;
     color: #fff;
+    text-decoration: none;
+  }
+  
+    .link {
+    padding: 20px;
+	color: black;
+    text-decoration: none;
+  }
+  
+    .footer-link {
+    padding: 20px;
+	color: #fff;
     text-decoration: none;
   }
   
