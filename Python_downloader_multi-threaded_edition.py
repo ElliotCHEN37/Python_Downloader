@@ -5,12 +5,18 @@ import threading
 import requests
 
 win = tk.Tk()
-win.title("Python Downloader Multi-threaded Edition v1.2 - GUI version")
+win.title("Python Downloader Multi-threaded Edition v1.2.1 - GUI version")
 win.geometry("600x300")
 win.iconbitmap("pydl.ico")
 
+ul = tk.Label(text="Paste your download link here:")
+ul.pack()
+
 url_entry = tk.Entry(win, width=50)
 url_entry.pack()
+
+fn = tk.Label(text="Enter your file name here:")
+fn.pack()
 
 filename_entry = tk.Entry(win, width=50)
 filename_entry.pack()
