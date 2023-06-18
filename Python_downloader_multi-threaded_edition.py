@@ -5,7 +5,7 @@ import threading
 import requests
 
 win = tk.Tk()
-win.title("Python Downloader Multi-threaded Edition v1.2.1 - GUI version")
+win.title("Python Downloader Multi-threaded Edition v1.2.2 - GUI version")
 win.geometry("600x300")
 win.iconbitmap("pydl.ico")
 
@@ -44,19 +44,22 @@ def download():
                 progress = downloaded_size / total_size * 100
                 progress_bar["value"] = progress
                 win.update()
+                # Update progress label with percentage
+                complete_label.config(text="Downloading ({:.2f}%)".format(progress))
+                complete_label.update()
 
         complete_label.config(text="Download complete")
 
     download_thread = threading.Thread(target=download_thread)
     download_thread.start()
 
-download_button = tk.Button(win, text="Download", command=download)
+download_button = tk.Button(win, text="Download", command=download, cursor="hand2")
 download_button.pack()
 
 def show_about():
-    messagebox.showinfo("About", "Python Downloader. \n\nAuthor: Elliot\nVersion: 1.2")
+    messagebox.showinfo("About", "Python Downloader. \n\nAuthor: Elliot\nVersion: 1.2.2")
 
-about_button = tk.Button(win, text="About", command=show_about)
+about_button = tk.Button(win, text="About", command=show_about, cursor="hand2")
 about_button.pack()
 
 def open_link(event):
@@ -65,6 +68,5 @@ def open_link(event):
 link_label = tk.Label(win, text="Visit official site", cursor="hand2")
 link_label.pack()
 link_label.bind("<Button-1>", open_link)
-
 
 win.mainloop()
