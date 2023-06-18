@@ -17,7 +17,31 @@ A high speed downloader built with Python.
 5. After finished, run the Python script
 
 6. Enjoy the high download speed without payment or advertisement
+
+## Proxy_settings
+
+This is an optional setting. You can config in these ways: 
+
+1. Type it directly
+
+2. create "config.json"
+
+Steps: 
+
+	1. create a json file called "config", it should be like this -> config.json
 	
+	2. copy and paste the following code to "config.json"
+	
+		{
+		  "proxy": {
+			"https": "your proxy server ip + port"
+		  }
+		}
+
+	3. put it into the same directory where the main script is.
+	
+	3. now the downloader will fill the blank automatically
+
 ## Contributing
 
 1. Fork this repo
