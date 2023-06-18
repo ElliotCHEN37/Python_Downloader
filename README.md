@@ -28,9 +28,9 @@ This is an optional setting. You can config in these ways:
 
 Steps: 
 
-	1. create a json file called "config", it should be like this -> config.json
+1. create a json file called "config", it should be like this -> config.json
 	
-	2. copy and paste the following code to "config.json"
+2. copy and paste the following code to "config.json"
 	
 		{
 		  "proxy": {
@@ -38,9 +38,9 @@ Steps:
 		  }
 		}
 
-	3. put it into the same directory where the main script is.
+3. put it into the same directory where the main script is.
 	
-	3. now the downloader will fill the blank automatically
+4. now the downloader will fill the blank automatically
 
 ## Contributing
 
