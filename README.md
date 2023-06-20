@@ -34,7 +34,7 @@ Steps:
 	
 		{
 		  "proxy": {
-			"https": "your proxy server ip + port"
+			"<https or http>": "<your proxy server ip + port>"
 		  }
 		}
 
