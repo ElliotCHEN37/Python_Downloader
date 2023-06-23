@@ -81,24 +81,6 @@ def read_proxy_config():
     except FileNotFoundError:
         pass
 
-def check_update():
-    json_url = "https://example.com/update.json"
-
-    try:
-        response = requests.get(json_url)
-        response.raise_for_status()
-        update_info = response.json()
-
-        latest_version = update_info["version"]
-        download_link = update_info["download_link"]
-
-        if latest_version != "v1.2.4":
-            response = messagebox.askyesno("Update!", "New version is available, would you like to update?")
-            if response == tk.YES:
-                webbrowser.open(download_link)
-    except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
-        messagebox.showerror("Error", str(e))
-
 root = tk.Tk()
 root.title("Python Downloader Multi-threaded Edition v1.2.4 - GUI version")
 root.geometry("600x310")
