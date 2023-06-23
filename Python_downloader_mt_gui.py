@@ -3,7 +3,26 @@ import webbrowser
 from tkinter import ttk, messagebox
 import requests
 import json
-from threading import Thread
+import time
+
+
+def check_update():
+    json_url = "https://raw.githubusercontent.com/ElliotCHEN37/Python_Downloader/main/update.json"
+
+    try:
+        response = requests.get(json_url)
+        response.raise_for_status()
+        update_info = response.json()
+
+        latest_version = update_info["version"]
+        download_link = update_info["download_link"]
+
+        if latest_version != "1.2.4":
+            response = messagebox.askyesno("Update!", "New version is available, would you like to update?")
+            if response == tk.YES:
+                webbrowser.open(download_link)
+    except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+        messagebox.showerror("Error", str(e))
 
 def download():
     url = url_entry.get()
@@ -21,28 +40,28 @@ def download():
         total_size = int(response.headers.get('content-length', 0))
         block_size = 1024
 
-        def download_thread():
-            downloaded_size = 0
+        start_time = time.time()
+        downloaded_size = 0
+        with open(filename, 'wb') as f:
             for data in response.iter_content(block_size):
                 f.write(data)
                 downloaded_size += len(data)
                 progress = downloaded_size / total_size * 100
                 progress_bar["value"] = progress
                 root.update()
-                complete_label.config(text="Downloading ({:.2f}%)".format(progress))
+                elapsed_time = time.time() - start_time
+                download_speed = downloaded_size / (1024 * elapsed_time)  # Speed in KB/s
+                remaining_size = total_size - downloaded_size
+                remaining_time = remaining_size / (1024 * download_speed) / 60 if download_speed > 0 else 0  # Time in minutes
+                complete_label.config(text="Downloading ({:.2f}%)\nSpeed: {:.2f} KB/s\nEstimated Time: {:.2f} minutes".format(progress, download_speed, remaining_time))
 
-            complete_label.config(text="Download complete")
-            f.close()
-
-        with open(filename, 'wb') as f:
-            download_thread = Thread(target=download_thread)
-            download_thread.start()
+            complete_label.config(text="Download complete\nTotal Time: {:.2f} minutes".format((time.time() - start_time) / 60))
 
     except requests.exceptions.RequestException as e:
         messagebox.showerror("Error", str(e))
 
 def show_about():
-    messagebox.showinfo("About", "Python Downloader\n\nAuthor: Elliot\nVersion: 1.2.3")
+    messagebox.showinfo("About", "Python Downloader\n\nAuthor: Elliot\nVersion: 1.2.4")
 
 def open_link(event):
     webbrowser.open("https://sites.google.com/view/pydl/index")
@@ -62,9 +81,27 @@ def read_proxy_config():
     except FileNotFoundError:
         pass
 
+def check_update():
+    json_url = "https://example.com/update.json"
+
+    try:
+        response = requests.get(json_url)
+        response.raise_for_status()
+        update_info = response.json()
+
+        latest_version = update_info["version"]
+        download_link = update_info["download_link"]
+
+        if latest_version != "v1.2.4":
+            response = messagebox.askyesno("Update!", "New version is available, would you like to update?")
+            if response == tk.YES:
+                webbrowser.open(download_link)
+    except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+        messagebox.showerror("Error", str(e))
+
 root = tk.Tk()
-root.title("Python Downloader Multi-threaded Edition v1.2.3 - GUI version")
-root.geometry("600x300")
+root.title("Python Downloader Multi-threaded Edition v1.2.4 - GUI version")
+root.geometry("600x310")
 root.iconbitmap("pydl.ico")
 
 download_label = tk.Label(root, text="Paste your download link here:")
@@ -97,6 +134,9 @@ complete_label.pack()
 download_button = tk.Button(root, text="Download", command=download, cursor="hand2")
 download_button.pack()
 
+update_button = tk.Button(root, text="Check for update", command=check_update, cursor="hand2")
+update_button.pack()
+
 about_button = tk.Button(root, text="About", command=show_about, cursor="hand2")
 about_button.pack()
 
@@ -105,5 +145,7 @@ link_label.pack()
 link_label.bind("<Button-1>", open_link)
 
 read_proxy_config()
+
+check_update()
 
 root.mainloop()
